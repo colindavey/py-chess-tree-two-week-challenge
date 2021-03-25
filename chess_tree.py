@@ -552,7 +552,9 @@ class Controls(tk.Frame):
         # http://stackoverflow.com/questions/3876229/how-to-run-a-code-whenever-a-tkinter-widget-value-changes/3883495#3883495
         self.next_move_str = tk.StringVar(self)
         self.nextMoveOMen = tk.OptionMenu(self, self.next_move_str, [])
-        self.nextMoveOMen.config(width=7)
+        # self.nextMoveOMen.config(width=7)
+        self.nextMoveOMen.config(width=0)
+        # self.nextMoveOMen.pack(side=LEFT, fill=X, expand=True)
         self.nextMoveOMen.pack(side=LEFT)
 
         self.frwdBtn = tk.Button(self, text=">")
@@ -606,6 +608,10 @@ class Controls(tk.Frame):
                 self.next_move_str.set(next_move_str)
             else:
                 self.next_move_str.set(new_vals[0])
+        # else:
+        #     self.nextMoveOMen['menu'].add_command(label='<none>')
+        #     self.next_move_str.set('')
+
 
     def update_display(self, cm):
         self.update_next_move_option_menu(cm)
@@ -734,7 +740,7 @@ class ChessTree(tk.Frame):
         ####################
 
         # any tree node with tag sel_var will now automatically turn light gray
-        self.tree.tag_configure('sel_var', background='#fff') # light gray
+        self.tree.tag_configure('sel_var', background='#aaa') # light gray
         font_family = "Helvetica"
         # font_family = "courier"
         font_size = 12
@@ -743,7 +749,7 @@ class ChessTree(tk.Frame):
         self.tree.tag_configure('all', font=(font_family, font_size))
 
         # tree changes due to clicks or key presses allow actions on tree selection changes
-        # otherwise not
+        # otherwise no
         self.tree.bind("<Button-1>", self.handle_tree_click)
         self.tree.bind("<Key>", self.handle_tree_click)
         self.tree_clicked = False
@@ -1009,10 +1015,12 @@ class Controller(object):
 
         self.top = Frame(self.parent)
         # self.top.pack(side=TOP, fill=BOTH, expand=True)
-        self.top.pack(side=TOP, fill=BOTH)
+        # self.top.pack(side=TOP, fill=BOTH)
+        self.top.pack(side=TOP)
 
         self.left = Frame(self.top)
-        self.left.pack(side=LEFT, fill=BOTH, expand=True)
+        # self.left.pack(side=LEFT, fill=BOTH, expand=True)
+        self.left.pack(side=LEFT)
 
         # Create the board view (bv)
         self.bv = BoardView(self.left, vp=vp)
